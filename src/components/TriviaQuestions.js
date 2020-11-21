@@ -2,25 +2,35 @@
 
 import React, { useState, useEffect } from 'react'
 import TriviaQuestion from './TriviaQuestion'
+import Submit from './Submit'
 
 const TriviaQuestions = ({ category, clearSelectedCategory }) => {
   const [questions, setQuestions] = useState([])
-  const [answers, setAnswers] = useState([])
+  const [answers, setAnswers] = useState({})
+  const [submit, setSubmit] = useState(false)
 
   useEffect(() => {
     fetch(`https://opentdb.com/api.php?amount=10&category=${category.id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         setQuestions(data.results)
       })
   }, [category])
 
-  const handleAnswer = (answer) => {
-    console.log(answer)
+  const handleAnswer = ({ answer, id }) => {
+    setAnswers({ ...answers, [id]: answer })
   }
 
-  const SubmitAnswers = () => {}
+  if (submit) {
+    return (
+      <Submit
+        clearSelectedCategory={clearSelectedCategory}
+        questions={questions}
+        category={category}
+        answers={answers}
+      />
+    )
+  }
 
   return (
     <div>
@@ -33,7 +43,7 @@ const TriviaQuestions = ({ category, clearSelectedCategory }) => {
           key={question.id}
         />
       ))}
-      <button type='submit' onClick={SubmitAnswers}>
+      <button type='submit' onClick={() => setSubmit(!submit)}>
         Submit Answers
       </button>
     </div>
