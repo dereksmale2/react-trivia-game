@@ -25,7 +25,7 @@ const TriviaQuestion = ({ question, handleAnswer }) => {
   }, [question])
 
   return (
-    <div>
+    <div className='ma3'>
       <div>
         <b>Question:</b>
         <span dangerouslySetInnerHTML={{ __html: question.question }} />

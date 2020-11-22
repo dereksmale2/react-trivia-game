@@ -26,8 +26,18 @@ const Trivia = () => {
 
   return (
     <div>
+      <center>
+        <h1>Welcome to Trivia Game!</h1>
+      </center>
+      <center>
+        <h3>Select a category below to begin</h3>
+      </center>
       {categories.map((trivia) => (
-        <button key={trivia.id} onClick={() => setSelectedCategory(trivia)}>
+        <button
+          className='ma3 ba pa3 blue'
+          key={trivia.id}
+          onClick={() => setSelectedCategory(trivia)}
+        >
           {trivia.name}
         </button>
       ))}

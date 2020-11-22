@@ -34,8 +34,14 @@ const TriviaQuestions = ({ category, clearSelectedCategory }) => {
 
   return (
     <div>
-      <h2>{category.name}</h2>
-      <button onClick={clearSelectedCategory}>Return to all categories</button>
+      <center>
+        <h2>{category.name}</h2>
+      </center>
+      <center>
+        <button onClick={clearSelectedCategory}>
+          Return to all categories
+        </button>
+      </center>
       {questions.map((question) => (
         <TriviaQuestion
           question={question}
@@ -43,9 +49,11 @@ const TriviaQuestions = ({ category, clearSelectedCategory }) => {
           key={question.id}
         />
       ))}
-      <button type='submit' onClick={() => setSubmit(!submit)}>
-        Submit Answers
-      </button>
+      <center>
+        <button type='submit' onClick={() => setSubmit(!submit)}>
+          Submit Answers
+        </button>
+      </center>
     </div>
   )
 }
